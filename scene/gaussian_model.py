@@ -18,8 +18,8 @@ from utils.system_utils import mkdir_p
 from plyfile import PlyData, PlyElement
 from utils.sh_utils import RGB2SH
 from simple_knn._C import distCUDA2
-from utils.graphics_utils import BasicPointCloud //BasicPointCloud: {point, colors, normals}
-from utils.general_utils import strip_symmetric, build_scaling_rotation //strip_symmetric-> lower-diag covar matrix에서 값을 추출해서 vectorize 시켜주는 함수
+from utils.graphics_utils import BasicPointCloud #BasicPointCloud: {point, colors, normals}
+from utils.general_utils import strip_symmetric, build_scaling_rotation #strip_symmetric-> lower-diag covar matrix에서 값을 추출해서 vectorize 시켜주는 함수
 
 class GaussianModel:
 
