@@ -48,8 +48,9 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
     ema_loss_for_log = 0.0
     progress_bar = tqdm(range(first_iter, opt.iterations), desc="Training progress")
     first_iter += 1
-    for iteration in range(first_iter, opt.iterations + 1):        
-        if network_gui.conn == None:
+    for iteration in range(first_iter, opt.iterations + 1):
+        #network_gui.conn->custom_cam, do_training 등의 명령을 통해 원격으로 새로운 동작 수행.
+        if network_gui.conn == None: 
             network_gui.try_connect()
         while network_gui.conn != None:
             try:
@@ -66,11 +67,11 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
 
         iter_start.record()
 
-        gaussians.update_learning_rate(iteration)
+        gaussians.update_learning_rate(iteration) #XYZ parameter lr 세부조정
 
         # Every 1000 its we increase the levels of SH up to a maximum degree
         if iteration % 1000 == 0:
-            gaussians.oneupSHdegree()
+            gaussians.oneupSHdegree() #SHdegreeup->furier와 같다. 더 세밀한 색깔 묘사
 
         # Pick a random Camera
         if not viewpoint_stack:
